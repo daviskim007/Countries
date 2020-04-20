@@ -61,6 +61,19 @@ class ListViewModelTest {
         Assert.assertEquals(false,listViewModel.loading.value)
     }
 
+    @Test
+    fun getCountriesFail()    {
+        testSingle = Single.error(Throwable())
+
+        `when`(countriesService.getCountries()).thenReturn(testSingle)
+
+        listViewModel.refresh()
+
+        Assert.assertEquals(true, listViewModel.countryLoadError.value)
+        Assert.assertEquals(false,listViewModel.loading.value)
+
+    }
+
     /*We need to whenever a observable is called, We need to return immediately(delay:0), And then
     we use this immediate for all these scheduling that rxJava and rxAndroid are doing.
     */

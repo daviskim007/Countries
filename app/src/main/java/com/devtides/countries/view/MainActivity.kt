@@ -29,6 +29,13 @@ class MainActivity : AppCompatActivity() {
             adapter = countriesAdapter
         }
 
+        // This is the function that's being called when the spinner is showing
+        swipeRefreshLayout.setOnRefreshListener {
+            // Want that spinner to disapper after we let go
+            swipeRefreshLayout.isRefreshing = false
+            viewModel.refresh()
+        }
+
         observeViewModel()
     }
 

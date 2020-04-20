@@ -1,6 +1,7 @@
 package com.devtides.countries.di
 
 import com.devtides.countries.model.CountriesApi
+import com.devtides.countries.model.CountriesService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -26,4 +27,8 @@ Single is basically unobservable that only omits one value and then closes
             .build()
             .create(CountriesApi::class.java)
     }
+    @Provides
+    fun provideCountriesService():CountriesService{
+        return CountriesService()
     }
+}
